@@ -118,6 +118,13 @@ class Player(Ship):
                     if laser.collision(obj):
                         objs.remove(obj)
                         self.lasers.remove(laser)
+    def draw(self, window):
+        super().draw(window)
+        self.healthbar(window)
+    
+    def healthbar(self, window):
+        pygame.draw.rect(window, (255,0,0), (int(self.x), int(self.y + self.ship_img.get_height() + 10), int(self.ship_img.get_width()), 10))
+        pygame.draw.rect(window, (0,255,0), (int(self.x), int(self.y + self.ship_img.get_height() + 10), int(self.ship_img.get_width() * (self.health/self.max_health)), 10))
 
 
 class Enemy(Ship):
@@ -169,7 +176,7 @@ def main():
 
     laser_vel = 5
 
-    player = Player(WIDTH/2, HEIGHT - 100)
+    player = Player(WIDTH/2, HEIGHT - 115)
 
     clock = pygame.time.Clock()
 
@@ -235,7 +242,7 @@ def main():
         if keys[pygame.K_w] and (player.y - player_vel > 0):  # up
             player.y -= player_vel
 
-        if keys[pygame.K_s] and (player.y + player_vel + player.get_height() < HEIGHT):  # down
+        if keys[pygame.K_s] and (player.y + player_vel + player.get_height() + 15 < HEIGHT):  # down
             player.y += player_vel
 
         if keys[pygame.K_SPACE]:
@@ -248,11 +255,32 @@ def main():
             if random.randrange(0, 2*60) == 1:
                 enemy.shoot()
 
-            if enemy.y + enemy.get_height() > HEIGHT:
+            if collide(enemy, player):
+                player.health -= 10
+                enemies.remove(enemy)
+            elif enemy.y + enemy.get_height() > HEIGHT:
                 lives -= 1
                 enemies.remove(enemy)
-
+            
         player.move_lasers(-laser_vel, enemies)
 
+def main_menu():
+    font_family = "comicsans"
+    font_size = 50
+    title_font = pygame.font.SysFont(font_family, font_size)
+    run = True
+    while run:
+        WIN.blit(BACKGROUND, (0, 0))
+        title_label = title_font.render("Press mouse button to begin...", 1, (255,255,255))
+        WIN.blit(title_label, (int(WIDTH/2 - title_label.get_width()/2), int(HEIGHT/2 - title_label.get_height()/2)))
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                main()
+
+    pygame.quit()
+
 if __name__ == '__main__':
-    main()
+    main_menu()
