@@ -1,2 +1,2 @@
 # Space-Invaders
-Full space shooter/invader game!
+Space shooter/invader game!
