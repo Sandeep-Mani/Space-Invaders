@@ -17,3 +17,6 @@ Clone the repo and run the python file **main.py**
 ```sh
 $ python main.py
 ```
+
+![Menu](/img/Menu.png)
+![Game Play](img/GamePlay2.png)
