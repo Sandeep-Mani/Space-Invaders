@@ -15,6 +15,8 @@ $ pip install pygame
 
 Clone the repo and run the python file **main.py**
 ```sh
+$ git clone <repo-url>
+$ cd Space-Invaders/
 $ python main.py
 ```
 
