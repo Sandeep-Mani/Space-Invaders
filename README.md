@@ -1,10 +1,10 @@
 # Space-Invaders
 Space shooter/invader game!
 ### Prerequisites
-- [Python]
-- [pip] \
+- [Python](https://www.python.org/downloads/)
+- [pip](https://pypi.org/project/pip/) \
 _Pip would usually get installed while installing pyhton. If not installed then follow the link mentioned above._
-- [pygame] \
+- [pygame](https://pypi.org/project/pygame/) \
 _Install python pygame package using:_
     ```sh
     $ pip install pygame
@@ -18,7 +18,3 @@ $ python run.py
 
 ![Menu](/img/Menu.png)
 ![Game Play](img/GamePlay2.png)
-
-[Python]: (https://www.python.org/downloads/)
-[pip]: (https://pypi.org/project/pip/)
-[pygame]: (https://pypi.org/project/pygame/)
